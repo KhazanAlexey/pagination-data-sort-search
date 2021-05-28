@@ -11,6 +11,7 @@ const DataTable = () => {
     const [totalItems, setTotalItems]=useState(0)
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
+
     const [sorting, setSorting] = useState({ field: "", order: "" });
 
     const ITEMS_PER_PAGE = 20;

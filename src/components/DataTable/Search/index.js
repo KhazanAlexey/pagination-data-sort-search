@@ -1,26 +1,18 @@
 import React, {useState} from "react";
 
-// const Search = ({ onSearch }) => {
-//     const [search, setSearch] = useState("");
-//
-//     const onInputChange = value => {
-//         setSearch(value);
-//         onSearch(value);
-//     };
-//     return (
-//         <input
-//             type="text"
-//             className="form-control"
-//             style={{ width: "240px" }}
-//             placeholder="Search"
-//             value={search}
-//             onChange={e => onInputChange(e.target.value)}
-//         />
-//     );
-// };
-const Search = () => {
-    return <input type={'text'}
-    style={{width:'200px'}}
-    placeholder={'search....'}/>
+
+const Search = (props) => {
+    const [search, setSearch] = useState('')
+    const onInputChange = (e) => {
+        setSearch(e.target.value)
+        props.onSearch(e.target.value)
+
+    }
+    return <input
+        type={'text'}
+        style={{width: '200px'}}
+        placeholder={'search....'}
+        onChange={onInputChange}
+        value={search}/>
 }
 export default Search;
