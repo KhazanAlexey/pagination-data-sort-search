@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { TableHeader, Pagination, Search } from "../../components/DataTable/index";
-import Header from "../../components/Header";
+import Header from "../../Header/index";
+
 // import useFullPageLoader from "../../hooks/useFullPageLoader";
 
 const DataTable = () => {
     const [comments, setComments] = useState([]);
     // const [loader, showLoader, hideLoader] = useFullPageLoader();
-    const [totalItems, setTotalItems] = useState(0);
+    // const [totalItems, setTotalItems] = useState(0);
+    const [totalItems, setTotalItems]=useState(0)
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
 
-    const ITEMS_PER_PAGE = 50;
+    const ITEMS_PER_PAGE = 20;
 
     const headers = [
         { name: "No#", field: "id", isSortable: false },
@@ -82,15 +84,13 @@ const DataTable = () => {
 
             <div className="row w-100">
                 <div className="col mb-3 col-12 text-center">
-                    <div className="row">
-                        <div className="col-md-6">
+                    <div >
                             <Pagination
                                 total={totalItems}
                                 itemsPerPage={ITEMS_PER_PAGE}
                                 currentPage={currentPage}
                                 onPageChange={page => setCurrentPage(page)}
                             />
-                        </div>
                         <div className="col-md-6 d-flex flex-row-reverse">
                             <Search
                                 onSearch={value => {
@@ -100,9 +100,8 @@ const DataTable = () => {
                             />
                         </div>
                     </div>
-
                     <table className="table table-striped">
-                        <TableHeader headers={headers} onSorting={onSorting} />
+                       <TableHeader headers={headers} onSorting={onSorting}/>
                         <tbody>
                             {commentsData.map(comment => (
                                 <tr>

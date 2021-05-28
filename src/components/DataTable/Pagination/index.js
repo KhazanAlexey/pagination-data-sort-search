@@ -7,46 +7,26 @@ export const   PaginationComponent = ({
     currentPage = 1,
     onPageChange
 }) => {
-    const [totalPages, setTotalPages] = useState(0);
-
-    useEffect(() => {
-        if (total > 0 && itemsPerPage > 0)
-            setTotalPages(Math.ceil(total / itemsPerPage));
-    }, [total, itemsPerPage]);
-
-    const paginationItems = useMemo(() => {
-        const pages = [];
-
-        for (let i = 1; i <= totalPages; i++) {
-            pages.push(
-                <Pagination.Item
-                    key={i}
-                    active={i === currentPage}
-                    onClick={() => onPageChange(i)}
-                >
-                    {i}
-                </Pagination.Item>
-            );
+    const [totalPage,setTotalPage]=useState(0)
+    useEffect(()=>{
+        if(total>0&& itemsPerPage>0){
+            setTotalPage(Math.ceil(total/itemsPerPage))
         }
+    },[ total,itemsPerPage])
+    const paginationItems=useMemo(()=>{
+        const pages=[]
+        for (let i=1;i<totalPage;i++){
+          pages.push(  <Pagination.Item active={i===currentPage} key={i} onClick={()=>{onPageChange(i)}} >{i}</Pagination.Item>)
+        }
+        return pages
 
-        return pages;
-    }, [totalPages, currentPage]);
-
-    if (totalPages === 0) return null;
-
-    return (
-        <Pagination>
-            <Pagination.Prev
-                onClick={() => onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-            />
-            {paginationItems}
-            <Pagination.Next
-                onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-            />
-        </Pagination>
-    );
+    },[totalPage,currentPage])
+    return    <Pagination >
+            <Pagination.Prev onClick={() => {
+            onPageChange(currentPage - 1)
+        }} disabled={currentPage === 1}/>
+        {paginationItems.map(p=><span>{p}</span>)}
+    </Pagination>
 };
 
 export default PaginationComponent;
