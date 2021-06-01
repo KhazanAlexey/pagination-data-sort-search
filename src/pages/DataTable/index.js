@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from "react";
 import { TableHeader, Pagination, Search } from "../../components/DataTable/index";
 import Header from "../../Header/index";
 
-// import useFullPageLoader from "../../hooks/useFullPageLoader";
 
 const DataTable = () => {
     const [comments, setComments] = useState([]);
